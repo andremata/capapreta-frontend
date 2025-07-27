@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" (click)="voltar()">
+      <ion-icon name="arrow-back"> </ion-icon>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Consulta de Usuários</ion-title>
+    <ion-buttons slot="primary" (click)="addUsuario()">
+      <ion-button >Novo
+        <ion-icon slot="end" name="add"> </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of usuarios">
+      <ion-item-options side="start">
+        <ion-item-option (click)="editar(item.id, item.nome, item.email, item.usuario, item.senha, item.nivel, item.situacao)">
+          Editar
+        </ion-item-option>
+      </ion-item-options>
+  
+      <ion-item>
+        <ion-label><strong>{{item.nome}}</strong>
+        <h6><small> <span>Status: <strong>{{item.situacao}}</strong></span> - Nivel: <strong>{{item.nivel}}</strong></small></h6>
+      </ion-label>
+      </ion-item>
+  
+      <ion-item-options side="end">
+        <ion-item-option (click)="mostrar(item.id, item.nome, item.email, item.usuario, item.senha, item.nivel, item.situacao)" color="secondary">
+          Mostrar
+        </ion-item-option>
+        <ion-item-option (click)="excluir(item.id)" color="danger">
+          Excluir
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  
+  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      refreshingSpinner="circles"
+      refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-infinite-scroll  (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

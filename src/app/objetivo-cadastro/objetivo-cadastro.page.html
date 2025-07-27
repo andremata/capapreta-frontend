@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" (click)="findObjetivos()">
+      <ion-icon name="arrow-back"> </ion-icon>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cadastro de Objetivos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Descrição</ion-label>
+    <ion-input [(ngModel)]="descricao"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="floating">Data Conclusão</ion-label>
+    <br>
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime 
+          id="datetime"
+          [(ngModel)]="dataConclusao"
+          presentation="date" 
+          [showDefaultButtons]="true"
+          doneText="Ok"
+          cancelText="Fechar">
+        </ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Prioridade</ion-label>
+    <ion-select placeholder="Selecione" [(ngModel)]="prioridade">
+      <ion-select-option value="0">00</ion-select-option>
+      <ion-select-option value="1">01</ion-select-option>
+      <ion-select-option value="2">02</ion-select-option>
+      <ion-select-option value="3">03</ion-select-option>
+      <ion-select-option value="4">04</ion-select-option>
+      <ion-select-option value="5">05</ion-select-option>
+      <ion-select-option value="6">06</ion-select-option>
+      <ion-select-option value="7">07</ion-select-option>
+      <ion-select-option value="8">08</ion-select-option>
+      <ion-select-option value="9">09</ion-select-option>
+      <ion-select-option value="10">10</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Situação</ion-label>
+    <ion-select placeholder="Selecione" [(ngModel)]="situacao">
+      <ion-select-option value="ABERTO">ABERTO</ion-select-option>
+      <ion-select-option value="CONCLUIDO">CONCLUIDO</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-button *ngIf="!id" color="success" expand="block" (click)="salvar()">
+    Salvar
+  </ion-button>
+
+  <ion-button *ngIf="id" color="primary" expand="block" (click)="alterar()">
+    Alterar
+  </ion-button>
+
+</ion-content>

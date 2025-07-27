@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" (click)="login()">
+      <ion-icon name="arrow-back"> </ion-icon>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Alterar Senha</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <p class="titulo"><ion-title>Alteração de senha.</ion-title></p>
+    <p class="subtitulo">Preencha os campos abaixo para alterar sua senha.</p>
+  </div>
+
+  <div class="ion-padding">
+    <ion-item>
+      <ion-input type="password" placeholder="Senha" class="input" [(ngModel)]="senha"></ion-input>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="Repita a senha" class="input" [(ngModel)]="senha2"></ion-input>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-item>
+
+    <ion-button icon-left size="medium" expand="block" (click)="salvar()" tappable>
+      Alterar Senha
+    </ion-button>
+  </div>
+</ion-content>

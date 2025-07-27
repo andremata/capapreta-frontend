@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" (click)="login()">
+      <ion-icon name="arrow-back"> </ion-icon>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Recuperar Senha</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <p class="titulo"><ion-title>Recuperação de senha.</ion-title></p>
+    <p class="subtitulo">Para recuperar sua senha preencha o e-mail abaixo.</p>
+  </div>
+
+  <div class="ion-padding">
+    <ion-item>
+      <ion-input type="email" placeholder="E-mail" class="input" [(ngModel)]="email"></ion-input>
+      <ion-icon name="person-outline"></ion-icon>
+    </ion-item>
+
+    <ion-button icon-left size="medium" expand="block" (click)="recuperar()" tappable>
+      Recuperar
+    </ion-button>
+  </div>
+</ion-content>

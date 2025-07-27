@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start" (click)="home()">
+      <ion-icon name="arrow-back"> </ion-icon>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Minhas Tarefas</ion-title>
+    <ion-buttons slot="primary" (click)="addTarefa()">
+      <ion-button >Novo
+        <ion-icon slot="end" name="add"> </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of tarefas">
+      <ion-item-options side="start">
+        <ion-item-option (click)="editar(item.id, item.descricao, item.situacao)">
+          Editar
+        </ion-item-option>
+      </ion-item-options>
+  
+      <ion-item>
+        <ion-label><strong>{{item.descricao}}</strong>
+        <h6><small><span>Situação: <strong class="situacao">{{item.situacao}}</strong></span></small></h6>
+      </ion-label>
+      </ion-item>
+  
+      <ion-item-options side="end">
+        <ion-item-option (click)="excluir(item.id)" color="danger">
+          Excluir
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  
+  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      refreshingSpinner="circles"
+      refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-infinite-scroll  (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Carregando mais tarefas">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true">
+  <div class="header">
+    <p class="titulo"><ion-title>Seja bem vindo</ion-title></p>
+    <p class="subtitulo">Cadastre-se para acessar o sistema</p>
+  </div>
+
+  <div class="ion-padding">
+    <ion-item>
+      <ion-input type="email" placeholder="E-mail" class="input" [(ngModel)]="email"></ion-input>
+      <ion-icon name="person-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="Senha" class="input" [(ngModel)]="senha"></ion-input>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-item>
+
+    <ion-button icon-left size="medium" expand="block" (click)="login()" tappable>Entrar
+    </ion-button>
+
+    <!--<div class="recupere">
+      <a [routerLink]="['/usuario-recupera-senha']">Recupere sua senha aqui</a>
+    </div>-->
+
+    <div class="cadastro">
+      <p>Novo(a) por aqui? <a [routerLink]="['/usuario-precadastro']">Faça seu cadastro</a></p>
+    </div>
+  </div>
+</ion-content>
