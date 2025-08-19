@@ -165,10 +165,10 @@ export class GraficoMassPage implements OnInit, AfterViewInit {
 
       let dados = {
         requisicao: "mass",
-        usuarioid: environment.usuarioid,
+        
       };
 
-      this.provider.requisicao(dados, 'objetivo.php').subscribe(
+      this.provider.post(dados, 'objetivo.php').subscribe(
         data => {
           if(data['sucesso']) {
             this.objetivos = [];

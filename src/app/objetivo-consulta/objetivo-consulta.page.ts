@@ -55,12 +55,12 @@ export class ObjetivoConsultaPage implements OnInit {
       let dados = {
         requisicao: 'consultar',
         descricao: this.descricao,
-        usuarioid: environment.usuarioid,
+        
         limit: this.limit,
         start: this.start,
       };
     
-      this.provider.requisicao(dados, 'objetivo.php').subscribe(
+      this.provider.post(dados, 'objetivo.php').subscribe(
         data => {
           if(!data['sucesso']) {
             this.ionViewWillEnter();
@@ -88,11 +88,11 @@ export class ObjetivoConsultaPage implements OnInit {
     let dados = {
       requisicao: "excluir",
       id: id,
-      usuarioid: environment.usuarioid,
+      
     }
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'objetivo.php').subscribe(
+      this.provider.post(dados, 'objetivo.php').subscribe(
         data => {
           if(data['sucesso']){
             this.retorno(data['mensagem'], 'success');

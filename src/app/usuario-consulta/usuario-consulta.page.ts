@@ -54,7 +54,7 @@ export class UsuarioConsultaPage implements OnInit {
         start : this.start
       };
 
-      this.provider.requisicao(dados, 'usuarios.php').subscribe(
+      this.provider.post(dados, 'usuarios.php').subscribe(
         data => {
           if(!data['sucesso']){
             this.ionViewWillEnter();
@@ -86,7 +86,7 @@ export class UsuarioConsultaPage implements OnInit {
     };
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'usuarios.php').subscribe(
+      this.provider.post(dados, 'usuarios.php').subscribe(
         data => {
           if(data['sucesso']){
             this.retorno(data['mensagem'], 'success');

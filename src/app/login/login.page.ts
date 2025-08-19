@@ -39,21 +39,26 @@ export class LoginPage implements OnInit {
         senha: this.senha,
       }
 
-      this.provider.requisicao(dados, 'login.php').subscribe(
-        data => {
-          if (data['sucesso']) {
-              //this.mensagem(data['user']['nome'], 'success');
+      this.provider.post(dados, 'login.php').subscribe(
+        (data: any) => {
+          if (data['sucesso'] && data['token']) {
+            localStorage.setItem('token', data['token']); // Armazena o token
+            
+            // Decodifica o payload do token para obter o nível do usuário
+            const payload = JSON.parse(atob(data['token'].split('.')[1]));
+            const userLevel = payload.data.nivel;
 
-              environment.usuarioid = data['user']['id'];
-              
-              if (data['user']['nivel'] == 'ADMINISTRADOR') {
-                this.router.navigate(['home'], { replaceUrl: true });
-              } else {
-                this.router.navigate(['home-usuario'], { replaceUrl: true });
-              }
-          } else{
+            if (userLevel == 'ADMINISTRADOR') {
+              this.router.navigate(['home'], { replaceUrl: true });
+            } else {
+              this.router.navigate(['home-usuario'], { replaceUrl: true });
+            }
+          } else {
             this.mensagem(data['mensagem'], 'danger');
           }
+        },
+        error => {
+          this.mensagem('Erro ao tentar fazer login. Tente novamente.', 'danger');
         }
       )
     })

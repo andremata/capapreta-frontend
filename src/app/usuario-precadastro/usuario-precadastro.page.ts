@@ -50,7 +50,7 @@ export class UsuarioPrecadastroPage implements OnInit {
     };
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'usuario-precadastro.php').subscribe(
+      this.provider.post(dados, 'usuario-precadastro.php').subscribe(
         data => {
           if(data['sucesso']){
             this.retorno(data['mensagem'], 'success');

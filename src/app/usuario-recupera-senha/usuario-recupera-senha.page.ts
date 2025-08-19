@@ -41,7 +41,7 @@ export class UsuarioRecuperaSenhaPage implements OnInit {
     };
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'usuarios.php').subscribe(
+      this.provider.post(dados, 'usuarios.php').subscribe(
         data => {
           if(data['sucesso']){
             this.alterarSenha(data['user'], dados.email);

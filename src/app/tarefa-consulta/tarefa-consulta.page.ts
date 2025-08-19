@@ -51,12 +51,12 @@ export class TarefaConsultaPage implements OnInit {
       let dados = {
         requisicao: 'consultar',
         descricao: this.descricao,
-        usuarioid: environment.usuarioid,
+        
         limit : this.limit,
         start : this.start,
       };
 
-      this.provider.requisicao(dados, 'tarefa.php').subscribe(
+      this.provider.post(dados, 'tarefa.php').subscribe(
         data => {
           if(!data['sucesso']) {
             this.ionViewWillEnter();
@@ -79,11 +79,11 @@ export class TarefaConsultaPage implements OnInit {
     let dados = {
       requisicao: "excluir",
       id: id,
-      usuarioid: environment.usuarioid,
+      
     };
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'tarefa.php').subscribe(
+      this.provider.post(dados, 'tarefa.php').subscribe(
         data => {
           if(data['sucesso']){
             this.retorno(data['mensagem'], 'success');

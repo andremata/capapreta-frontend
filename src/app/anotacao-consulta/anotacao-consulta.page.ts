@@ -51,12 +51,12 @@ export class AnotacaoConsultaPage implements OnInit {
       let dados = {
         requisicao: 'consultar',
         descricao: this.descricao,
-        usuarioid: environment.usuarioid,
+        
         limit : this.limit,
         start : this.start,
       };
 
-      this.provider.requisicao(dados, 'anotacoes.php').subscribe(
+      this.provider.post(dados, 'anotacoes.php').subscribe(
         data => {
           if(!data['sucesso']) {
             this.ionViewWillEnter();

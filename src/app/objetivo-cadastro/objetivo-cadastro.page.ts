@@ -92,7 +92,7 @@ export class ObjetivoCadastroPage implements OnInit {
       dataConclusao: this.formatarDataBanco(this.dataConclusao),
       situacao: this.situacao,
       prioridade: this.prioridade,
-      usuarioid: environment.usuarioid,
+      
     }
 
     if(dados.dataConclusao == '') {
@@ -101,7 +101,7 @@ export class ObjetivoCadastroPage implements OnInit {
     }
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'objetivo.php').subscribe(
+      this.provider.post(dados, 'objetivo.php').subscribe(
         data => {
           if(data['sucesso']) {
             this.retorno(data['mensagem'], 'success');
@@ -124,7 +124,7 @@ export class ObjetivoCadastroPage implements OnInit {
       dataConclusao: this.dataConclusao,
       situacao: this.situacao,
       prioridade: this.prioridade,
-      usuarioid: environment.usuarioid,
+      
     }
 
     if(dados.dataConclusao == '') {
@@ -133,7 +133,7 @@ export class ObjetivoCadastroPage implements OnInit {
     }
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'objetivo.php').subscribe(
+      this.provider.post(dados, 'objetivo.php').subscribe(
         data => {
           if(data['sucesso']) {
             this.retorno(data['mensagem'], 'success');

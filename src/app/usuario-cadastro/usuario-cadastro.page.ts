@@ -68,7 +68,7 @@ export class UsuarioCadastroPage implements OnInit {
     };
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'usuarios.php').subscribe(
+      this.provider.post(dados, 'usuarios.php').subscribe(
         data => {
           if(data['sucesso']){
             this.retorno(data['mensagem'], 'success');
@@ -95,7 +95,7 @@ export class UsuarioCadastroPage implements OnInit {
     };
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'usuarios.php').subscribe(
+      this.provider.post(dados, 'usuarios.php').subscribe(
         data => {
           if(data['sucesso']){
             this.retorno(data['mensagem'], 'success');

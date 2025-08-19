@@ -55,11 +55,11 @@ export class TarefaCadastroPage implements OnInit {
       id: this.id,
       descricao: this.descricao,
       situacao: this.situacao,
-      usuarioid: environment.usuarioid,
+      
     };
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'tarefa.php').subscribe(
+      this.provider.post(dados, 'tarefa.php').subscribe(
         data => {
           if(data['sucesso']) {
             this.retorno(data['mensagem'], 'success');
@@ -80,11 +80,11 @@ export class TarefaCadastroPage implements OnInit {
       id: this.id,
       descricao: this.descricao,
       situacao: this.situacao,
-      usuarioid: environment.usuarioid,
+      
     };
 
     return new Promise(resolve => {
-      this.provider.requisicao(dados, 'tarefa.php').subscribe(
+      this.provider.post(dados, 'tarefa.php').subscribe(
         data => {
           if(data['sucesso']) {
             this.retorno(data['mensagem'], 'success');

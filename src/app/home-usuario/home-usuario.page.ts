@@ -30,6 +30,7 @@ export class HomeUsuarioPage implements OnInit {
   }
 
   logout() {
+    localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 }

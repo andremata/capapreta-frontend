@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '',
@@ -17,15 +19,18 @@ const routes: Routes = [
   },
   {
     path: 'usuario-cadastro',
-    loadChildren: () => import('./usuario-cadastro/usuario-cadastro.module').then( m => m.UsuarioCadastroPageModule)
+    loadChildren: () => import('./usuario-cadastro/usuario-cadastro.module').then( m => m.UsuarioCadastroPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'usuario-cadastro/:id/:nome/:email/:usuario/:senha/:nivel/:situacao',
-    loadChildren: () => import('./usuario-cadastro/usuario-cadastro.module').then( m => m.UsuarioCadastroPageModule)
+    loadChildren: () => import('./usuario-cadastro/usuario-cadastro.module').then( m => m.UsuarioCadastroPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'usuario-consulta',
-    loadChildren: () => import('./usuario-consulta/usuario-consulta.module').then( m => m.UsuarioConsultaPageModule)
+    loadChildren: () => import('./usuario-consulta/usuario-consulta.module').then( m => m.UsuarioConsultaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'usuario-precadastro',
@@ -33,55 +38,68 @@ const routes: Routes = [
   },
   {
     path: 'usuario-detalhe',
-    loadChildren: () => import('./usuario-detalhe/usuario-detalhe.module').then( m => m.UsuarioDetalhePageModule)
+    loadChildren: () => import('./usuario-detalhe/usuario-detalhe.module').then( m => m.UsuarioDetalhePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'usuario-detalhe/:id/:nome/:email/:usuario/:senha/:nivel/:situacao',
-    loadChildren: () => import('./usuario-detalhe/usuario-detalhe.module').then( m => m.UsuarioDetalhePageModule)
+    loadChildren: () => import('./usuario-detalhe/usuario-detalhe.module').then( m => m.UsuarioDetalhePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'home-usuario',
-    loadChildren: () => import('./home-usuario/home-usuario.module').then( m => m.HomeUsuarioPageModule)
+    loadChildren: () => import('./home-usuario/home-usuario.module').then( m => m.HomeUsuarioPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'tarefa-consulta',
-    loadChildren: () => import('./tarefa-consulta/tarefa-consulta.module').then( m => m.TarefaConsultaPageModule)
+    loadChildren: () => import('./tarefa-consulta/tarefa-consulta.module').then( m => m.TarefaConsultaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'tarefa-cadastro',
-    loadChildren: () => import('./tarefa-cadastro/tarefa-cadastro.module').then( m => m.TarefaCadastroPageModule)
+    loadChildren: () => import('./tarefa-cadastro/tarefa-cadastro.module').then( m => m.TarefaCadastroPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'tarefa-cadastro/:id/:descricao/:situacao',
-    loadChildren: () => import('./tarefa-cadastro/tarefa-cadastro.module').then( m => m.TarefaCadastroPageModule)
+    loadChildren: () => import('./tarefa-cadastro/tarefa-cadastro.module').then( m => m.TarefaCadastroPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'objetivo-cadastro',
-    loadChildren: () => import('./objetivo-cadastro/objetivo-cadastro.module').then( m => m.ObjetivoCadastroPageModule)
+    loadChildren: () => import('./objetivo-cadastro/objetivo-cadastro.module').then( m => m.ObjetivoCadastroPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'objetivo-cadastro/:id/:descricao/:dataConclusao/:situacao/:prioridade',
-    loadChildren: () => import('./objetivo-cadastro/objetivo-cadastro.module').then( m => m.ObjetivoCadastroPageModule)
+    loadChildren: () => import('./objetivo-cadastro/objetivo-cadastro.module').then( m => m.ObjetivoCadastroPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'objetivo-consulta',
-    loadChildren: () => import('./objetivo-consulta/objetivo-consulta.module').then( m => m.ObjetivoConsultaPageModule)
+    loadChildren: () => import('./objetivo-consulta/objetivo-consulta.module').then( m => m.ObjetivoConsultaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'anotacao-consulta',
-    loadChildren: () => import('./anotacao-consulta/anotacao-consulta.module').then( m => m.AnotacaoConsultaPageModule)
+    loadChildren: () => import('./anotacao-consulta/anotacao-consulta.module').then( m => m.AnotacaoConsultaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'anotacao-cadastro',
-    loadChildren: () => import('./anotacao-cadastro/anotacao-cadastro.module').then( m => m.AnotacaoCadastroPageModule)
+    loadChildren: () => import('./anotacao-cadastro/anotacao-cadastro.module').then( m => m.AnotacaoCadastroPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'anotacao-cadastro/:id/:descricao',
-    loadChildren: () => import('./anotacao-cadastro/anotacao-cadastro.module').then( m => m.AnotacaoCadastroPageModule)
+    loadChildren: () => import('./anotacao-cadastro/anotacao-cadastro.module').then( m => m.AnotacaoCadastroPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'grafico-mass',
-    loadChildren: () => import('./grafico-mass/grafico-mass.module').then( m => m.GraficoMassPageModule)
+    loadChildren: () => import('./grafico-mass/grafico-mass.module').then( m => m.GraficoMassPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'usuario-recupera-senha',
