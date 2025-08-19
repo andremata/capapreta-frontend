@@ -1,60 +1,67 @@
-.tudo{
-    background-color: black;
+ion-item {
+  --background: var(--ion-color-step-150, #f1f1f1);
+  --color: var(--ion-text-color, #000);
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-.input{
-    font-size: 300;
+.header {
+  margin-top: 100px;
+  margin-bottom: 80px;
+  text-align: center;
+
+  .subtitulo {
+    color: var(--ion-color-medium);
+    font-size: 0.9rem;
+  }
+
+  .titulo {
+    font-size: 2rem;
+    font-weight: bold;
+  }
 }
 
-ion-item{
-    --background: #F1F1F1;
-    border-radius: 5px;
-    margin-bottom: 10px;;
+.cadastro {
+  position: absolute;
+  bottom: 20px; /* Adicionado um pequeno espaçamento do fundo */
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--ion-text-color);
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+  }
 }
 
-.header{
-    margin-top: 100px;
-    margin-bottom: 80px;
-    text-align: center;
-    .subtitulo{
-        color: grey;
-        font-size: 0.9rem;
-    }
-    titulo{
-        font-size: 2rem;
-    }
+.recupere {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+
+  a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+  }
 }
 
-.cadastro{
-    display: flex;
-    margin: auto;
-    flex-direction: row;
-    align-content: center;
-    position: absolute;
-    justify-content: center;
-    left: 0;
-    bottom: 0;
-    width: 80%;
-    right: 0;
-    color: black;
-
-    p{
-        font-size: 0.9rem;
-        font-weight: bold;
-    }
-    a{
-        text-decoration: none;
-    }
+ion-button {
+  margin-top: 35px;
 }
 
-.recupere{
-    display: flex;
-    justify-content: flex-end;
+ion-icon {
+  font-size: 1.4rem;
+  color: var(--ion-color-medium);
+}
 
-    a{
-        font-weight: 400;
-        font-size: 0.9rem;
-        text-decoration: none;
-        font-weight: bold;
-    }
+ion-title {
+  font-weight: bold;
 }
