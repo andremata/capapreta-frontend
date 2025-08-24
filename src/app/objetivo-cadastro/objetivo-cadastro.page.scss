@@ -1,0 +1,29 @@
+ion-modal {
+    ion-datetime {
+        --background: #1e1e1e;
+        --color: #ffffff;
+
+        .datetime-calendar {
+            background: #2e2e2e;
+        }
+
+        .datetime-day,
+        .datetime-month,
+        .datetime-year {
+            color: #ffffff;
+        }
+
+        .datetime-day-active {
+            --background: #3880ff;
+            --color: #ffffff;
+        }
+
+        .datetime-toolbar {
+            --background: #2e2e2e;
+        }
+
+        .datetime-button {
+            --color: #3880ff;
+        }
+    }
+}

@@ -16,19 +16,12 @@
   
   <ion-item>
     <ion-label position="floating">Data Conclusão</ion-label>
-    <br>
     <ion-datetime-button datetime="datetime"></ion-datetime-button>
 
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
-        <ion-datetime 
-          id="datetime"
-          [(ngModel)]="dataConclusao"
-          presentation="date" 
-          [showDefaultButtons]="true"
-          doneText="Ok"
-          cancelText="Fechar">
-        </ion-datetime>
+        <ion-datetime id="datetime" [(ngModel)]="dataConclusao" presentation="date"></ion-datetime>
+
       </ng-template>
     </ion-modal>
   </ion-item>
