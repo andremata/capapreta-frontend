@@ -18,16 +18,4 @@ export class HomePage {
   usuarios(){
     this.router.navigate(['usuario-consulta']);
   }
-
-  tarefa(){
-    this.router.navigate(['tarefa-consulta']);
-  }
-
-  objetivo(){
-    this.router.navigate(['objetivo-consulta']);
-  }
-
-  anotacao(){
-    this.router.navigate(['anotacao-consulta']);
-  }
 }
