@@ -23,6 +23,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'usuario-cadastro/:id/:nome/:email/:usuario/:nivel/:situacao',
+    loadChildren: () => import('./usuario-cadastro/usuario-cadastro.module').then( m => m.UsuarioCadastroPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'usuario-cadastro/:id/:nome/:email/:usuario/:senha/:nivel/:situacao',
     loadChildren: () => import('./usuario-cadastro/usuario-cadastro.module').then( m => m.UsuarioCadastroPageModule),
     canActivate: [AuthGuard]
@@ -107,6 +112,10 @@ const routes: Routes = [
   },
   {
     path: 'usuario-nova-senha',
+    loadChildren: () => import('./usuario-nova-senha/usuario-nova-senha.module').then( m => m.UsuarioNovaSenhaPageModule)
+  },
+  {
+    path: 'usuario-nova-senha/:id',
     loadChildren: () => import('./usuario-nova-senha/usuario-nova-senha.module').then( m => m.UsuarioNovaSenhaPageModule)
   },
   {

@@ -73,10 +73,13 @@ export class UsuarioConsultaPage implements OnInit {
     });
   }
 
-  editar(id, nome, email, usuario, senha, nivel, situacao){
+  editar(id, nome, email, usuario, nivel, situacao){
     this.router.navigate(['usuario-cadastro/' + id + '/' 
-      + nome + '/' + email + '/' + usuario + '/' + senha + '/' 
-      + nivel + '/' + situacao]);
+      + nome + '/' + email + '/' + usuario + '/' + nivel + '/' + situacao]);
+  }
+
+  alterarSenha(id){
+    this.router.navigate(['usuario-nova-senha/' + id]);
   }
 
   excluir(id){

@@ -17,8 +17,11 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of usuarios">
       <ion-item-options side="start">
-        <ion-item-option (click)="editar(item.id, item.nome, item.email, item.usuario, item.senha, item.nivel, item.situacao)">
+        <ion-item-option (click)="editar(item.id, item.nome, item.email, item.usuario, item.nivel, item.situacao)">
           Editar
+        </ion-item-option>
+        <ion-item-option (click)="alterarSenha(item.id)" color="warning">
+          Alterar Senha
         </ion-item-option>
       </ion-item-options>
   

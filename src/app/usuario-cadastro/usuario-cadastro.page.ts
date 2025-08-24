@@ -27,7 +27,6 @@ export class UsuarioCadastroPage implements OnInit {
       this.id       = data.id;
       this.nome     = data.nome;
       this.email    = data.email;
-      this.senha    = data.senha;
       this.nivel    = data.nivel;
       this.situacao = data.situacao;
     });

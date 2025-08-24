@@ -23,7 +23,6 @@ export class UsuarioNovaSenhaPage implements OnInit {
   ngOnInit() {
     this.atRoute.params.subscribe((data : any) => {
       this.id       = data.id;
-      this.email    = data.email;
     });
   }
 
@@ -41,13 +40,16 @@ export class UsuarioNovaSenhaPage implements OnInit {
     this.router.navigate(['login']);
   }
 
+  voltar() {
+    this.router.navigate(['usuario-consulta']);
+  }
+
   salvar(){
     let dados = {
-      requisicao : "alterar_senha",
+      requisicao : "admin_alterar_senha",
       id         : this.id,
       senha      : this.senha,
       senha2     : this.senha2,
-      email      : this.email,
     };
 
     return new Promise(resolve => {
@@ -55,7 +57,7 @@ export class UsuarioNovaSenhaPage implements OnInit {
         data => {
           if(data['sucesso']){
             this.retorno(data['mensagem'], 'success');
-            this.router.navigate(['login']);
+            this.router.navigate(['usuario-consulta']);
 
           } else {
             this.retorno(data['mensagem'], 'danger');
