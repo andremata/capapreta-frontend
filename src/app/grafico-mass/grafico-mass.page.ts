@@ -12,7 +12,7 @@ Chart.register(...registerables)
   templateUrl: './grafico-mass.page.html',
   styleUrls: ['./grafico-mass.page.scss'],
 })
-export class GraficoMassPage implements OnInit, AfterViewInit {
+export class GraficoMassPage {
   objetivos: any = [];
 
   @ViewChild('barCanvas') barCanvas;
@@ -20,106 +20,33 @@ export class GraficoMassPage implements OnInit, AfterViewInit {
   @ViewChild('pieCanvas') pieCanvas;
   @ViewChild('doughnutCanvas') doughnutCanvas;
 
-  //barChart: any;
-  //lineChart: any;
   pieChart: any;
-  //doughnutChart: any;
 
   constructor(private router: Router,
               private provider: ApiService,
               private toastController: ToastController
   ) { }
 
-  ngAfterViewInit(){
-    setTimeout(() => {
-      //this.barChart = this.getBarChart();
-      //this.lineChart = this.getLineChart();
-    }, 250)
-    setTimeout(() => {
-      this.pieChart = this.consultar();
-      //this.pieChart = this.getPieChart();
-      //this.doughnutChart = this.getDoughnutChart();
-    }, 500)
+  ionViewWillEnter(){
+    this.consultar();
   }
 
-  getChart(context, chartType, data, options?) {
+  getChart(context, chartType, data, objectives, options?) {
     return new Chart (context, {
       data,
-      options,
+      options: {
+        ...options,
+        onClick: (event, elements) => {
+          if (elements.length > 0) {
+            const clickedElementIndex = elements[0].index;
+            const objective = objectives[clickedElementIndex];
+            this.navigateToObjective(objective);
+          }
+        }
+      },
       type: chartType
     })
   }
-
-  /*getBarChart(){
-    const data = {
-      labels: ['Tar-1', 'Tar-2', 'Tar-3', 'Tar-4', 'Tar-5', 'Tar-6','Tar-7'],
-      datasets: [{
-        label: 'número de votos',
-        data: [12, 23, 15, 90, 75, 58, 32],
-        backgroundColor: ['#7270B5', '#C86FA7', '#ACB9C9', '#10537D', '#F9DB6A', '#69C8C5', '#E85154'],
-        borderWidth: 1
-      }]
-    };
-
-    const options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-
-    return this.getChart(this.barCanvas.nativeElement, 'bar', data, options);
-  }*/
-
-  /*getLineChart(){
-    const data = {
-      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril'],
-      datasets: [{
-        label: 'Meu Dataset',
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: 'rgb(0, 178, 255)',
-        borderColor: 'rgb(231, 205, 35)',
-        borderCapStyle: 'butt',
-        borderJoinStyle: 'miter',
-        pointRadius: 1,
-        pointHitRadius: 10,
-        data:[20, 15, 98, 4],
-        scanGaps: false,
-      }, {
-        label: 'Meu segundo Dataset',
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: 'rgb(117, 0, 49)',
-        borderColor: 'rgb(51, 50, 46)',
-        borderCapStyle: 'butt',
-        borderJoinStyle: 'miter',
-        pointRadius: 1,
-        pointHitRadius: 10,
-        data:[29, 135, 13, 70],
-        scanGaps: false,
-      }
-    ]
-    }
-
-    return this.getChart(this.lineCanvas.nativeElement, 'line', data)
-  }*/
-
-  /*getDoughnutChart(){
-    const data = {
-      labels: ['Tar-1', 'Tar-2', 'Tar-3', 'Tar-4', 'Tar-5', 'Tar-6','Tar-7'],
-      datasets: [{
-        label: 'Teste Chart',
-        data: [300, 75, 224, 28, 102, 380, 350],
-        backgroundColor: ['#7270B5', '#C86FA7', '#ACB9C9', '#10537D', '#F9DB6A', '#69C8C5', '#E85154']
-      }]
-    }
-
-    return this.getChart(this.doughnutCanvas.nativeElement, 'doughnut', data);
-  }*/
 
   getPieChart(){
     const data = {
@@ -130,11 +57,10 @@ export class GraficoMassPage implements OnInit, AfterViewInit {
       }]
     }
 
-    return this.getChart(this.pieCanvas.nativeElement, 'pie', data);
+    return this.getChart(this.pieCanvas.nativeElement, 'pie', data, []);
   }
 
   ngOnInit() {
-    this.consultar();
   }
 
   home(){
@@ -152,52 +78,44 @@ export class GraficoMassPage implements OnInit, AfterViewInit {
   }
 
   consultar() {
-    return new Promise(resolve => {
-      this.objetivos = [];
+    if (this.pieChart) {
+      this.pieChart.destroy();
+    }
 
-      const result = {
-        labels: [''],
-        datasets: [{
-          data: [],
-          backgroundColor: ['']
-        }]
-      }
+    let dados = {
+      requisicao: "mass",
+    };
 
-      let dados = {
-        requisicao: "mass",
-        
-      };
+    this.provider.post(dados, 'objetivo.php').subscribe(
+      data => {
+        if(data['sucesso']) {
+          this.objetivos = data['objetivos'];
 
-      this.provider.post(dados, 'objetivo.php').subscribe(
-        data => {
-          if(data['sucesso']) {
-            this.objetivos = [];
-            
-            for(let item of data['objetivos']) {
-              this.objetivos.push(item);
-            }
+          const result = {
+            labels: [] as string[],
+            datasets: [{
+              data: [] as number[],
+              backgroundColor: ['#7270B5', '#C86FA7', '#ACB9C9', '#10537D', '#F9DB6A', '#69C8C5', '#E85154']
+            }]
+          };
 
-            console.log(this.objetivos);
-
-            for(let item of data['objetivos']) {
-              result.labels.push(item['descricao']);
-              result.datasets.push({
-                data: item['prioridade'],
-                backgroundColor: ['#7270B5', '#C86FA7', '#ACB9C9', '#10537D', '#F9DB6A', '#69C8C5', '#E85154']
-              });
-            }
-            
-            console.log(result);
-
-          } else {
-            this.retorno(data['mensagem'], 'danger');
+          for(let item of this.objetivos) {
+            result.labels.push(item['descricao']);
+            result.datasets[0].data.push(item['prioridade']);
           }
+          
+          this.pieChart = this.getChart(this.pieCanvas.nativeElement, 'pie', result, this.objetivos);
 
-          resolve(true);
-
-          return this.getChart(this.pieCanvas.nativeElement, 'pie', result);
+        } else {
+          this.retorno(data['mensagem'], 'danger');
         }
-      );
-    });
+      }
+    );
+  }
+
+  navigateToObjective(objective) {
+    this.router.navigate(['objetivo-cadastro/' + objective.id + '/' 
+      + objective.descricao + '/' + objective.dataConclusao + '/' 
+      + objective.situacao + '/' + objective.prioridade], { queryParams: { from: 'grafico' } });
   }
 }

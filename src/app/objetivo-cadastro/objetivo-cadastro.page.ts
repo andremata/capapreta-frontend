@@ -17,6 +17,7 @@ export class ObjetivoCadastroPage implements OnInit {
   prioridade: string = "";
   situacao: string = "";
   requisicao: string = "";
+  originPage: string = "";
 
   constructor(private router: Router,
               private provider: ApiService,
@@ -31,6 +32,10 @@ export class ObjetivoCadastroPage implements OnInit {
       this.dataConclusao = data.dataConclusao;
       this.situacao = data.situacao;
       this.prioridade = data.prioridade;
+    });
+
+    this.actRoute.queryParams.subscribe(params => {
+      this.originPage = params['from'] || '';
     });
   }
 
@@ -53,7 +58,11 @@ export class ObjetivoCadastroPage implements OnInit {
   }
 
   findObjetivos() {
-    this.router.navigate(['objetivo-consulta']);
+    if (this.originPage === 'grafico') {
+      this.router.navigate(['grafico-mass']);
+    } else {
+      this.router.navigate(['objetivo-consulta']);
+    }
   }
 
   formatarDataBanco(data: string | Date) {
@@ -106,7 +115,11 @@ export class ObjetivoCadastroPage implements OnInit {
           if(data['sucesso']) {
             this.retorno(data['mensagem'], 'success');
             this.limparCampos();
-            this.router.navigate(['objetivo-consulta']);
+            if (this.originPage === 'grafico') {
+              this.router.navigate(['grafico-mass']);
+            } else {
+              this.router.navigate(['objetivo-consulta']);
+            }
 
           } else {
             this.retorno(data['mensagem'], 'danger');
@@ -138,7 +151,11 @@ export class ObjetivoCadastroPage implements OnInit {
           if(data['sucesso']) {
             this.retorno(data['mensagem'], 'success');
             this.limparCampos();
-            this.router.navigate(['objetivo-consulta']);
+            if (this.originPage === 'grafico') {
+              this.router.navigate(['grafico-mass']);
+            } else {
+              this.router.navigate(['objetivo-consulta']);
+            }
 
           } else {
             this.retorno(data['mensagem'], 'danger');
