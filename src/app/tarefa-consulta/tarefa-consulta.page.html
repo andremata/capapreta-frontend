@@ -20,6 +20,9 @@
         <ion-item-option (click)="editar(item.id, item.descricao, item.situacao)">
           Editar
         </ion-item-option>
+        <ion-item-option (click)="concluir(item.id)" *ngIf="item.situacao === 'PENDENTE'" color="success">
+          Concluir
+        </ion-item-option>
       </ion-item-options>
   
       <ion-item>

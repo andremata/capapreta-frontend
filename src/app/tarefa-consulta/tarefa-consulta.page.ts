@@ -97,6 +97,27 @@ export class TarefaConsultaPage implements OnInit {
     });
   }
 
+  concluir(id){
+    let dados = {
+      requisicao: "concluir",
+      id: id,
+    };
+
+    return new Promise(resolve => {
+      this.provider.post(dados, 'tarefa.php').subscribe(
+        data => {
+          if(data['sucesso']){
+            this.retorno(data['mensagem'], 'success');
+            this.consultar();
+
+          } else {
+            this.retorno(data['mensagem'], 'danger');
+          }
+        }
+      );
+    });
+  }
+
   editar(id, descricao, situacao){
     this.router.navigate(['tarefa-cadastro/' + id + '/' 
       + descricao + '/' + situacao]);
